@@ -353,13 +353,15 @@ class YandexMetrikaStatsClientAdapter(YandexMetrikaClientAdapterAbstract):
 
     def process_response(self, response, request_kwargs, **kwargs):
         data = super().process_response(response, request_kwargs, **kwargs)
-        attribution = data["query"]["attribution"]
-        sampled = data["sampled"]
-        sample_share = data["sample_share"]
-        total_rows = int(data["total_rows"])
-        offset = data["query"]["offset"]
+        attribution = data.get("query").get("attribution")
+        sampled = data.get("sampled")
+        sample_share = data.get("sample_share")
+        total_rows = int(data.get("total_rows"))
+        offset = data.get("query").get("offset")
         limit = request_kwargs["params"].get("limit", LIMIT)
-        offset2 = offset + limit - 1
+        
+        offset2 = (0 if (offset == None) else offset) + (0 if (limit == None) else limit) - 1
+        
         if offset2 > total_rows:
             offset2 = total_rows
 
@@ -371,7 +373,7 @@ class YandexMetrikaStatsClientAdapter(YandexMetrikaClientAdapterAbstract):
         )
 
         kwargs["store"]["columns"] = (
-            data["query"]["dimensions"] + data["query"]["metrics"]
+            data.get("query").get("dimensions") + data.get("query").get("metrics")
         )
 
         return data

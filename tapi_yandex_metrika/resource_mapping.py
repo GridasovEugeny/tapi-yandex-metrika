@@ -1,10 +1,9 @@
 
 STATS_RESOURCE_MAPPING = {
-    "stats": {
+    "table": {
         "resource": "stat/v1/data",
         "docs": "https://yandex.ru/dev/metrika/doc/api2/api_v1/intro-docpage/",
         "params": [
-            "direct_client_logins=<string,_string,...>",
             "ids=<int,int,...>",
             "metrics=<string>",
             "accuracy=<string>",
@@ -12,7 +11,9 @@ STATS_RESOURCE_MAPPING = {
             "date1=<string>",
             "date2=<string>",
             "dimensions=<string>",
+            "direct_client_logins=<string,_string,...>",
             "filters=<string>",
+            "id=<integer>",
             "include_undefined=<boolean>",
             "lang=<string>",
             "limit=<integer>",
@@ -22,6 +23,33 @@ STATS_RESOURCE_MAPPING = {
             "proposed_accuracy=<boolean>",
             "sort=<string>",
             "timezone=<string>",
+        ]
+    },
+        "bytime": {
+        "resource": "stat/v1/data/bytime",
+        "docs": "https://yandex.ru/dev/metrika/doc/api2/api_v1/intro-docpage/",
+        "params": [
+            "ids=<int,int,...>",
+            "metrics=<string>",
+            "accuracy=<string>",
+            "annotation_groups=<list>",
+            "callback=<string>",
+            "date1=<string>",
+            "date2=<string>",
+            "dimensions=<string>",
+            "direct_client_logins=<string,_string,...>",
+            "filters=<string>",
+            "group=<group_type>",
+            "id=<integer>",
+            "include_annotations=<boolean>",
+            "include_undefined=<boolean>",
+            "lang=<string>",
+            "preset=<string>",
+            "pretty=<boolean>",
+            "proposed_accuracy=<boolean>",
+            "row_ids=<list>",
+            "timezone=<string>",
+            "top_keys=<integer>"
         ]
     },
 }
